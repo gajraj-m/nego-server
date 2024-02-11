@@ -12,7 +12,16 @@ const { initializeSocketServer } = require("./src/api/socket.js");
 
 const app = express();
 
-app.use(cors());
+// app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "https://buyer-nego.netlify.app/",
+      "https://seller-nego.netlify.app/",
+    ],
+    credentials: true,
+  })
+);
 app.use(express.json()); // middleware to let express know that we're going to use json
 app.use(cookieParser());
 // app.use(passport.initialize());
