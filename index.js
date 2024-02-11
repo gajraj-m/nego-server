@@ -1,7 +1,6 @@
 // server.js
 const express = require("express");
 const mongoose = require("mongoose");
-const passport = require("passport");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
@@ -16,20 +15,23 @@ const app = express();
 app.use(
   cors({
     origin: [
-      "https://buyer-nego.netlify.app/",
-      "https://seller-nego.netlify.app/",
+      "https://buyer-nego.netlify.app",
+      "https://seller-nego.netlify.app",
     ],
     credentials: true,
   })
 );
+// app.use(
+//   cors({
+//     origin: ["http://localhost:5174", "http://localhost:5173"],
+//     credentials: true,
+//   })
+// );
 app.use(express.json()); // middleware to let express know that we're going to use json
 app.use(cookieParser());
 // app.use(passport.initialize());
 // app.use(passport.session());
 dotenv.config();
-
-require("./src/utils/passport.js");
-
 // Replace 'YOUR_MONGODB_URI' with your MongoDB connection string
 mongoose.set("strictQuery", false);
 mongoose
